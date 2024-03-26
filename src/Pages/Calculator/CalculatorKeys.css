@@ -1,0 +1,10 @@
+button{
+    width: 67.2px; 
+    height: 67.2px;
+    margin: 6.4px; 
+    text-align: center;
+    font-size: 150%;
+    border-radius: 12.8px;
+    box-shadow: 1.6px 1.6px 1.6px 1.6px grey;
+
+}
