@@ -6,10 +6,93 @@ import { useState,useEffect } from "react";
 
 
 const Calculator= () => {
+    const [prevNumber, setPrevNumber] = useState(0);
+    const [nextNumber, setNextNumber] = useState("");
+    const [operation, setOperation] = useState(null);
+    const [result, setResult] = useState("0");
+   
+    useEffect(() => {}, [operation, nextNumber, prevNumber]);
+
+
+    const CalculatorOperations = {
+        "/": (firstValue, secondValue) => firstValue / secondValue,
+        "*": (firstValue, secondValue) => firstValue * secondValue,
+        "+": (firstValue, secondValue) => firstValue + secondValue,
+        "-": (firstValue, secondValue) => firstValue - secondValue,
+        "=": (firstValue, secondValue) => secondValue,
+      };
+
+
+    const percentage = () => {
+        setNextNumber(parseFloat(nextNumber) / 100);
+        if (prevNumber && nextNumber === "") {
+          setPrevNumber(parseFloat(prevNumber) / 100);
+        }
+      };
 
 
 
 
+    const applyOperation = () => {
+        let temp = CalculatorOperations[operation](
+          parseFloat(nextNumber),
+          parseFloat(prevNumber)
+        );
+        setOperation(null);
+        setNextNumber(String(temp));
+        setPrevNumber(null);
+
+      };
+
+    const clearData = () => {
+        setNextNumber("0");
+        setPrevNumber(0);
+      };
+
+    const handleNumber = (number) =>{
+            setNextNumber(nextNumber === "0" ? String(number) : nextNumber + number);
+          };
+
+    const changeSign = () => {
+        setNextNumber(parseFloat(nextNumber) * -1);
+    };
+
+    const addDot = () => {
+        if (!/\./.test(nextNumber)) {
+          setNextNumber(nextNumber + ".");
+        }}      
+
+
+
+
+
+
+        const handleOperation = (value) => {
+            if (!isNaN(value)) {
+              // If the value is a number, handle it separately
+              handleNumber(value);
+            } else if (value in CalculatorOperations) {
+              if (operation === null) {
+                setOperation(value);
+                setPrevNumber(nextNumber);
+                setNextNumber("");
+              } else if (operation) {
+                // Handle consecutive operations
+                setOperation(value);
+              }
+              if (prevNumber && operation && nextNumber) {
+                applyOperation();
+              }
+            } else if (value === "c") {
+              clearData();
+            } else if (value === "\xB1") {
+              changeSign();
+            } else if (value === ".") {
+              addDot();
+            } else if (value === "%") {
+              percentage();
+            }
+          };
 
 
 
@@ -18,7 +101,7 @@ const Calculator= () => {
 
   return(<div className="calculator">
   <div className="calculator-input">
-    <div className="result">{result} </div>
+    <div className="result">{nextNumber} </div>
   </div>
   <div className="calculator-keypad">
     <div className="keys-function">
@@ -57,7 +140,7 @@ const Calculator= () => {
   </div>
 </div>
 );
-}
+    }
 
 
 export default Calculator;
