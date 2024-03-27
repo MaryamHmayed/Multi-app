@@ -9,7 +9,7 @@ const Calculator= () => {
     const [prevNumber, setPrevNumber] = useState(0);
     const [nextNumber, setNextNumber] = useState("");
     const [operation, setOperation] = useState(null);
-    const [result, setResult] = useState("0");
+   ;
    
     useEffect(() => {}, [operation, nextNumber, prevNumber]);
 
@@ -67,30 +67,30 @@ const Calculator= () => {
 
 
 
-        const handleOperation = (value) => {
-            if (!isNaN(value)) {
-              // If the value is a number, handle it separately
-              handleNumber(value);
-            } else if (value in CalculatorOperations) {
-              if (operation === null) {
-                setOperation(value);
-                setPrevNumber(nextNumber);
-                setNextNumber("");
-              } else if (operation) {
-                // Handle consecutive operations
-                setOperation(value);
+const handleOperation = (value) => {
+    if (!isNaN(value)) {
+              
+    handleNumber(value);
+    } else if (value in CalculatorOperations) {
+        if (operation === null) {
+            setOperation(value);
+            setPrevNumber(nextNumber);
+            setNextNumber("");
+        } else if (operation) {
+               
+        setOperation(value);
               }
-              if (prevNumber && operation && nextNumber) {
-                applyOperation();
-              }
-            } else if (value === "c") {
-              clearData();
-            } else if (value === "\xB1") {
-              changeSign();
-            } else if (value === ".") {
-              addDot();
-            } else if (value === "%") {
-              percentage();
+        if (prevNumber && operation && nextNumber) {
+            applyOperation();
+          }
+        } else if (value === "c") {
+            clearData();
+        } else if (value === "\xB1") {
+            changeSign();
+        } else if (value === ".") {
+            addDot();
+        } else if (value === "%") {
+            percentage();
             }
           };
 
