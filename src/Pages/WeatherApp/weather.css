@@ -1,0 +1,57 @@
+
+
+
+body{
+    background-image: url(./assets/2148282541.jpg)
+}
+
+
+form{
+    padding: 30px 100px;
+
+
+}
+
+.container{
+    
+    background-color: rgb(212, 216, 218);
+    color: rgb(45, 82, 184);
+    width: 230px;
+    height: 360px;
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    text-align: center;
+    justify-content: space-around;
+    margin: 0 100px;
+    padding: 20px;
+    
+
+}
+
+
+button{
+    width: 100px;
+    height: 30px;
+    font-size: 14px;
+    border-radius: 11px;
+    background-color: blue;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+
+input{
+    border-radius: 6px;
+    width: 130px;
+    height: 30px;
+    background-color: rgb(255, 136, 0);
+    color:grey ;
+}
+
+
+p{
+    background-color: transparent;
+    width: fit-content;
+    color: rgb(28, 30, 156);
+   
+}
